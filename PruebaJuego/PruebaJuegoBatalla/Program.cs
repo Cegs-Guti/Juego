@@ -26,7 +26,17 @@ namespace JuegoNamespace
 
                 Console.WriteLine("\n¡El ganador se enfrenta al nuevo retador!");
 
-                Personaje nuevoRival = new PersonajeAdicional("Kroto", 35, 8);
+                // Ingreso de datos desde consola
+                Console.Write("Ingrese el nombre del nuevo personaje: ");
+                string nombre = Console.ReadLine() ?? "Desconocido";
+
+                Console.Write("Ingrese la vida del nuevo personaje: ");
+                int vida = int.TryParse(Console.ReadLine(), out int v) ? v : 30;
+
+                Console.Write("Ingrese el ataque del nuevo personaje: ");
+                int ataque = int.TryParse(Console.ReadLine(), out int a) ? a : 5;
+
+                Personaje nuevoRival = new PersonajeAdicional(nombre, vida, ataque);
                 Equipo lanza = new Arma(4);
                 nuevoRival.Equipar(lanza);
 
@@ -54,6 +64,29 @@ namespace JuegoNamespace
             this.vida = vida;
             this.vidaMaxima = vida;
             this.ataque = ataque;
+        }
+
+        // Propiedades públicas para subclases
+        public string Nombre
+        {
+            get => nombre;
+            set => nombre = value;
+        }
+
+        public int Vida
+        {
+            get => vida;
+            set
+            {
+                vida = value;
+                vidaMaxima = value;
+            }
+        }
+
+        public int Ataque
+        {
+            get => ataque;
+            set => ataque = value;
         }
 
         public string GetNombre() => nombre;
@@ -164,7 +197,12 @@ namespace JuegoNamespace
     class PersonajeAdicional : Personaje
     {
         public PersonajeAdicional(string nombre, int vida, int ataque)
-            : base(nombre, vida, ataque) { }
+            : base("", 0, 0)
+        {
+            this.Nombre = nombre;
+            this.Vida = vida;
+            this.Ataque = ataque;
+        }
     }
 
     class Equipo
@@ -222,7 +260,6 @@ namespace JuegoNamespace
                         EjecutarTurno(p1, p2);
                 }
 
-                // Verificar si ambos murieron simultáneamente
                 if (p1.GetVida() <= 0 && p2.GetVida() <= 0)
                 {
                     Console.WriteLine("\n¡Ambos combatientes se han matado mutuamente!");
