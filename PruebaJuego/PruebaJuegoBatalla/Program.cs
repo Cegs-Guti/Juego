@@ -237,6 +237,7 @@ namespace JuegoNamespace
 
         private static void EjecutarTurno(Personaje atacante, Personaje defensor)
         {
+            Console.WriteLine($"{atacante.GetNombre()} ataca a {defensor.GetNombre()}.");
             atacante.Atacar(defensor);
             Console.WriteLine($"{defensor.GetNombre()} tiene {defensor.GetVida()} de vida.");
 
