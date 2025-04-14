@@ -6,7 +6,7 @@ namespace JuegoNamespace
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Bienvenido a batallas legendarias.");
+            Console.WriteLine("Bienvenido a batallas legendarias...");
 
             Personaje sacerdote = new Sacerdote("Samson", 30, 5);
             Personaje barbaro = new Barbaro("Dave", 30, 7, 10);
