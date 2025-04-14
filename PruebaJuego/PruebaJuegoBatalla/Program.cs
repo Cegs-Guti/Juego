@@ -25,8 +25,7 @@ namespace JuegoNamespace
                 ganador.RegenerarVida();
 
                 Console.WriteLine("\n¡El ganador se enfrenta al nuevo retador!");
-
-                // Ingreso de datos desde consola
+                Console.WriteLine("Un nuevo retador aparece entre las tinieblas...");
                 Console.Write("Ingrese el nombre del nuevo personaje: ");
                 string nombre = Console.ReadLine() ?? "Desconocido";
 
@@ -44,7 +43,7 @@ namespace JuegoNamespace
             }
             else
             {
-                Console.WriteLine("\nNo hay ganador, no se puede continuar la siguiente batalla.");
+                Console.WriteLine("\n No hay ganador, no se puede continuar con la batalla.");
             }
         }
     }
@@ -66,7 +65,6 @@ namespace JuegoNamespace
             this.ataque = ataque;
         }
 
-        // Propiedades públicas para subclases
         public string Nombre
         {
             get => nombre;
@@ -100,6 +98,7 @@ namespace JuegoNamespace
             if (random.Next(100) < 10)
             {
                 Console.WriteLine($"{nombre} falló el ataque.");
+                Console.ReadKey();
                 return;
             }
 
@@ -108,7 +107,8 @@ namespace JuegoNamespace
             if (random.Next(100) < 10)
             {
                 danio *= 2;
-                Console.WriteLine("¡Golpe crítico!");
+                Console.WriteLine("Golpe crítico. " + nombre + " hace daño doble.");
+                Console.ReadKey();
             }
 
             objetivo.RecibirDanio(danio);
@@ -128,7 +128,8 @@ namespace JuegoNamespace
         public void RegenerarVida()
         {
             this.vida = this.vidaMaxima;
-            Console.WriteLine($"{nombre} ha regenerado su vida completamente: {vidaMaxima} puntos.");
+            Console.WriteLine($"{nombre} restauro su vida completamente: {vidaMaxima} puntos.");
+            Console.ReadKey();
         }
     }
 
@@ -150,6 +151,7 @@ namespace JuegoNamespace
             if (random.Next(100) < 10)
             {
                 Console.WriteLine($"{GetNombre()} falló el ataque.");
+                Console.ReadKey();
                 return;
             }
 
@@ -158,7 +160,8 @@ namespace JuegoNamespace
             if (random.Next(100) < 10)
             {
                 danio *= 2;
-                Console.WriteLine("¡Golpe crítico del bárbaro!");
+                Console.WriteLine("Golpe crítico. Dave hace daño doble.");
+                Console.ReadKey();
             }
 
             objetivo.RecibirDanio(danio);
@@ -183,7 +186,8 @@ namespace JuegoNamespace
             base.Atacar(objetivo);
             if (random.Next(100) <= 30)
             {
-                Console.WriteLine("¡El sacerdote lanza un hechizo doble!");
+                Console.WriteLine("El sacerdote lanza un hechizo doble.");
+                Console.ReadKey();
                 base.Atacar(objetivo);
             }
         }
@@ -238,7 +242,8 @@ namespace JuegoNamespace
 
         public static Personaje? Batalla(Personaje p1, Personaje p2)
         {
-            Console.WriteLine($"\n¡Comienza la batalla entre {p1.GetNombre()} y {p2.GetNombre()}!");
+            Console.WriteLine($"\n Comienza la gran batalla entre {p1.GetNombre()} y {p2.GetNombre()}!");
+            Console.ReadKey();
 
             bool turnoP1 = random.Next(2) == 0;
 
@@ -262,24 +267,29 @@ namespace JuegoNamespace
 
                 if (p1.GetVida() <= 0 && p2.GetVida() <= 0)
                 {
-                    Console.WriteLine("\n¡Ambos combatientes se han matado mutuamente!");
+                    Console.WriteLine("\n¡Ambos luchadores se han matado entre si.");
+                    Console.ReadKey();
                     return null;
                 }
             }
 
             Personaje ganador = p1.GetVida() > 0 ? p1 : p2;
-            Console.WriteLine($"\n¡{ganador.GetNombre()} ha ganado la batalla!");
+            Console.WriteLine($"\n¡{ganador.GetNombre()} ha ganado la batalla.");
+            Console.ReadKey();
             return ganador;
         }
 
         private static void EjecutarTurno(Personaje atacante, Personaje defensor)
         {
             Console.WriteLine($"{atacante.GetNombre()} ataca a {defensor.GetNombre()}.");
+            Console.ReadKey();
             atacante.Atacar(defensor);
-            Console.WriteLine($"{defensor.GetNombre()} tiene {defensor.GetVida()} de vida.");
+            Console.WriteLine($"{defensor.GetNombre()} tiene {defensor.GetVida()} de vida restante");
+            Console.ReadKey();
 
             if (defensor.GetVida() <= 0)
-                Console.WriteLine($"{defensor.GetNombre()} ha sido derrotado.");
+                Console.WriteLine($"{defensor.GetNombre()} ha sido derrotado y exalta su último aliento.");
+                Console.ReadKey();
         }
     }
 }
