@@ -26,16 +26,8 @@ namespace JuegoNamespace
 
                 Console.WriteLine("\n¡El ganador se enfrenta al nuevo retador!");
                 Console.WriteLine("Un nuevo retador aparece entre las tinieblas...");
-                Console.Write("Ingrese el nombre del nuevo personaje: ");
-                string nombre = Console.ReadLine() ?? "Desconocido";
 
-                Console.Write("Ingrese la vida del nuevo personaje: ");
-                int vida = int.TryParse(Console.ReadLine(), out int v) ? v : 30;
-
-                Console.Write("Ingrese el ataque del nuevo personaje: ");
-                int ataque = int.TryParse(Console.ReadLine(), out int a) ? a : 5;
-
-                Personaje nuevoRival = new PersonajeAdicional(nombre, vida, ataque);
+                Personaje nuevoRival = new PersonajeAdicional();
                 Equipo lanza = new Arma(4);
                 nuevoRival.Equipar(lanza);
 
@@ -128,7 +120,7 @@ namespace JuegoNamespace
         public void RegenerarVida()
         {
             this.vida = this.vidaMaxima;
-            Console.WriteLine($"{nombre} restauro su vida completamente: {vidaMaxima} puntos.");
+            Console.WriteLine($"{nombre} Se come un pan con queso y una coquita para restaurar su vida a {vidaMaxima} puntos.");
             Console.ReadKey();
         }
     }
@@ -200,12 +192,51 @@ namespace JuegoNamespace
 
     class PersonajeAdicional : Personaje
     {
-        public PersonajeAdicional(string nombre, int vida, int ataque)
-            : base("", 0, 0)
+        
+        public PersonajeAdicional() : base("", 0, 0)
         {
+            string nombre = ObtenerNombreValido();
+            int vida = ObtenerEnteroValido("vida", 10, 35);
+            int ataque = ObtenerEnteroValido("ataque", 1, 9);
+
             this.Nombre = nombre;
             this.Vida = vida;
             this.Ataque = ataque;
+        }
+
+        private string ObtenerNombreValido()
+        {
+            while (true)
+            {
+                Console.Write("Ingrese el nombre del nuevo guerrero (obligatorio): ");
+                string? entrada = Console.ReadLine();
+                Console.WriteLine($"Su nombre es  {entrada} y viene a partir craneos.");
+                Console.ReadKey();
+
+                if (!string.IsNullOrWhiteSpace(entrada) && entrada.All(char.IsLetter))
+                {
+                    return entrada;
+                }
+
+                Console.WriteLine("El pj requiere un nombre para poder luchar, ingrese solo letras.");
+            }
+        }
+        
+
+        private int ObtenerEnteroValido(string campo, int minimo, int maximo)
+        {
+            while (true)
+            {
+                Console.Write($"Ingrese {campo} (entre {minimo} y {maximo}): ");
+                string? entrada = Console.ReadLine();
+
+                if (int.TryParse(entrada, out int valor) && valor >= minimo && valor <= maximo)
+                {
+                    return valor;
+                }
+
+                Console.WriteLine($"Número invalido, {campo} debe ser entre {minimo} y {maximo}. Si no estaria demasiado cheto");
+            }
         }
     }
 
@@ -242,7 +273,7 @@ namespace JuegoNamespace
 
         public static Personaje? Batalla(Personaje p1, Personaje p2)
         {
-            Console.WriteLine($"\n Comienza la gran batalla entre {p1.GetNombre()} y {p2.GetNombre()}!");
+            Console.WriteLine($"\nComienza la gran batalla entre {p1.GetNombre()} y {p2.GetNombre()}");
             Console.ReadKey();
 
             bool turnoP1 = random.Next(2) == 0;
@@ -267,14 +298,14 @@ namespace JuegoNamespace
 
                 if (p1.GetVida() <= 0 && p2.GetVida() <= 0)
                 {
-                    Console.WriteLine("\n¡Ambos luchadores se han matado entre si.");
+                    Console.WriteLine("\nAmbos luchadores se han matado entre sí.");
                     Console.ReadKey();
                     return null;
                 }
             }
 
             Personaje ganador = p1.GetVida() > 0 ? p1 : p2;
-            Console.WriteLine($"\n¡{ganador.GetNombre()} ha ganado la batalla.");
+            Console.WriteLine($"\n{ganador.GetNombre()} ha ganado la batalla");
             Console.ReadKey();
             return ganador;
         }
@@ -284,12 +315,14 @@ namespace JuegoNamespace
             Console.WriteLine($"{atacante.GetNombre()} ataca a {defensor.GetNombre()}.");
             Console.ReadKey();
             atacante.Atacar(defensor);
-            Console.WriteLine($"{defensor.GetNombre()} tiene {defensor.GetVida()} de vida restante");
+            Console.WriteLine($"{defensor.GetNombre()} tiene {defensor.GetVida()} de vida restante.");
             Console.ReadKey();
 
             if (defensor.GetVida() <= 0)
-                Console.WriteLine($"{defensor.GetNombre()} ha sido derrotado y exalta su último aliento.");
+            {
+                Console.WriteLine($"{defensor.GetNombre()} ha sido derrotado y exhala su último aliento.");
                 Console.ReadKey();
+            }
         }
     }
 }

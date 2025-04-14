@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Downloads\\Juego-main (4)\\Juego-main\\PruebaJuego\\PruebaJuegoBatalla\\PruebaJuegoBatalla.csproj": {}
+    "C:\\Users\\Usuario\\Downloads\\Juego-main\\Juego-main\\PruebaJuego\\PruebaJuegoBatalla\\PruebaJuegoBatalla.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Downloads\\Juego-main (4)\\Juego-main\\PruebaJuego\\PruebaJuegoBatalla\\PruebaJuegoBatalla.csproj": {
+    "C:\\Users\\Usuario\\Downloads\\Juego-main\\Juego-main\\PruebaJuego\\PruebaJuegoBatalla\\PruebaJuegoBatalla.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Downloads\\Juego-main (4)\\Juego-main\\PruebaJuego\\PruebaJuegoBatalla\\PruebaJuegoBatalla.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Downloads\\Juego-main\\Juego-main\\PruebaJuego\\PruebaJuegoBatalla\\PruebaJuegoBatalla.csproj",
         "projectName": "PruebaJuegoBatalla",
-        "projectPath": "C:\\Users\\Usuario\\Downloads\\Juego-main (4)\\Juego-main\\PruebaJuego\\PruebaJuegoBatalla\\PruebaJuegoBatalla.csproj",
+        "projectPath": "C:\\Users\\Usuario\\Downloads\\Juego-main\\Juego-main\\PruebaJuego\\PruebaJuegoBatalla\\PruebaJuegoBatalla.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Downloads\\Juego-main (4)\\Juego-main\\PruebaJuego\\PruebaJuegoBatalla\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\Downloads\\Juego-main\\Juego-main\\PruebaJuego\\PruebaJuegoBatalla\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
